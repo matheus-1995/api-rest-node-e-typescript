@@ -1,4 +1,4 @@
-import { Request, RequestHandler, Response } from 'express';
+import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 //import { StatusCodes } from 'http-status-codes';
 //import { StatusCodes } from 'http-status-codes';
@@ -21,7 +21,13 @@ export const getAllValidation = validation((getSchema) => ({
 }));
 
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
-  console.log(req.query);
+  res.setHeader('acess-control-expose-headers', 'xtotal-count');
+  res.setHeader('x-total-count', 1);
 
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não Implementado!!');
+  return res.status(StatusCodes.OK).json([
+    {
+      id: 1,
+      nome: 'São Paulo',
+    }
+  ]);
 };
